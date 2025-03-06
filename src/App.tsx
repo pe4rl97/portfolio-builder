@@ -49,6 +49,7 @@ const App = () => {
       <DraggableStory
         components={components}
         sections={sections}
+        setSections={setSections}
         previewHtml={previewHtml}
         handleDragEnd={handleDragEnd}
       />

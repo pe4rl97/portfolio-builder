@@ -7,7 +7,7 @@ import {
   useSensor,
   useSensors
 } from "@dnd-kit/core";
-import React from "react";
+import React, { useState } from "react";
 import { MultipleComponentsData, SectionsData } from "../../types";
 import { Canvas } from "../Canvas";
 import { Sidebar } from "../Sidebar";
@@ -18,6 +18,7 @@ import { Sidebar } from "../Sidebar";
 interface DraggableStoryProps {
   components: MultipleComponentsData;
   sections: SectionsData;
+  setSections: React.Dispatch<React.SetStateAction<SectionsData>>;
   previewHtml: string;
   handleDragEnd: (event: DragEndEvent) => void;
 }
@@ -25,11 +26,12 @@ interface DraggableStoryProps {
 const DraggableStory: React.FC<DraggableStoryProps> = ({
   components,
   sections,
+  setSections,
   previewHtml,
   handleDragEnd,
 }) => {
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 10 } }));
-
+  const [isPreview] = useState<boolean>(!!previewHtml);
   return (
     <DndContext
       sensors={sensors}
@@ -39,7 +41,7 @@ const DraggableStory: React.FC<DraggableStoryProps> = ({
       {!previewHtml && (
         <div className="flex">
           <Sidebar components={components} />
-          <Canvas sections={sections} />
+          <Canvas sections={sections} setSections={setSections} isPreview={isPreview}/>
         </div>
       )}
     </DndContext>
