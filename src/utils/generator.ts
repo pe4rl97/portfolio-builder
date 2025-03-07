@@ -11,6 +11,7 @@ export const generateHTML = (sections: SectionsData) => {
         return '';
     })
     .join('');
+    console.log(sectionsHTML);
 
   return `<!DOCTYPE html>
 <html lang="en" class="antialiased scroll-smooth">

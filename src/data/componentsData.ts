@@ -10,7 +10,7 @@ export const components: MultipleComponentsData = {
         `<nav class="bg-white shadow-lg">
           <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-              <div class="text-xl font-bold">Portfolio</div>
+              <h1 class="text-xl font-bold">Portfolio</h1>
               <div class="space-x-4">
                 <a href="#home" class="text-gray-600 hover:text-gray-900">Home</a>
                 <a href="#about" class="text-gray-600 hover:text-gray-900">About</a>
@@ -29,7 +29,7 @@ export const components: MultipleComponentsData = {
         `<nav class="bg-gray-900 text-white shadow-lg">
           <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-              <div class="text-xl font-bold">Brand</div>
+              <h1 class="text-xl font-bold">Brand</h1>
               <div class="space-x-4">
                 <a href="#home" class="hover:text-gray-300">Home</a>
                 <a href="#about" class="hover:text-gray-300">About</a>
@@ -169,7 +169,7 @@ export const components: MultipleComponentsData = {
       component: (
         `<footer class="bg-gray-800 text-white py-4">
           <div class="max-w-6xl mx-auto text-center">
-            <div>&copy; 2025 Portfolio. All rights reserved.</div>
+            <p>&copy; 2025 Portfolio. All rights reserved.</p>
             <div class="mt-2">
               <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>
               <a href="#" class="text-blue-500 hover:underline ml-4">Terms of Service</a>
@@ -185,13 +185,13 @@ export const components: MultipleComponentsData = {
       component: (
         `<footer class="bg-gray-900 text-white py-6">
           <div class="max-w-6xl mx-auto text-center">
-            <div class="mb-4">Follow Me</div>
+            <p class="mb-4">Follow Me</p>
             <div class="space-x-4">
               <a href="#" class="text-blue-400 hover:text-blue-600">Twitter</a>
               <a href="#" class="text-blue-400 hover:text-blue-600">LinkedIn</a>
               <a href="#" class="text-blue-400 hover:text-blue-600">GitHub</a>
             </div>
-            <div class="mt-4">&copy; 2025 Portfolio. All rights reserved.</div>
+            <p class="mt-4">&copy; 2025 Portfolio. All rights reserved.</p>
           </div>
         </footer>`
       )

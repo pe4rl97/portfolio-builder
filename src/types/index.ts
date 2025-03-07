@@ -11,9 +11,9 @@ export interface MultipleComponentsData {
     [key: string]: ComponentData[] | null;
 }
 
-export interface SectionsData {
-    [key: string]: ComponentData | null;
-}
+export type SectionsData = {
+    [key in SectionType]: ComponentData | null;
+};
 
 export enum Axis {
   All,
