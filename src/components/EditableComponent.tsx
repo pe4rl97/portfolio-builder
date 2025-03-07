@@ -1,7 +1,7 @@
-  import { useEffect, useRef, useState } from "react";
-  import { ComponentData, SectionType } from "../types";
   import DOMPurify from "dompurify";
-  import { useSectionsContext } from "../context/SectionsProvider";
+import { useEffect, useRef } from "react";
+import { useSectionsContext } from "../context/SectionsProvider";
+import { ComponentData, SectionType } from "../types";
 
   const EditableComponent = ({
     component,
@@ -11,7 +11,6 @@
     sectionType: SectionType;
   }) => {
     const { isPreview, handleComponentUpdate } = useSectionsContext();
-    const [cleanHTML, setCleanHTML] = useState<string>(component.component);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -78,36 +77,11 @@
       };
     }, [isPreview, component, sectionType, handleComponentUpdate]);
 
-    useEffect(() => {
-      if (isPreview) {
-        const sanitizedHTML = component.component.replace(
-          /contenteditable="true"/g,
-          ""
-        );
-
-        // Only update if sanitizedHTML is different from the current component.component
-        if (sanitizedHTML !== component.component) {
-          handleComponentUpdate(sectionType, {
-            ...component,
-            component: sanitizedHTML,
-          });
-
-        }
-      }
-      setCleanHTML(component.component);
-    }, [
-      isPreview,
-      component.component,
-      handleComponentUpdate,
-      component,
-      sectionType,
-    ]);
-
     return (
       <div
         ref={ref}
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(cleanHTML, {
+          __html: DOMPurify.sanitize(component.component, {
             ADD_ATTR: isPreview ? [] : ["contenteditable"],
           }),
         }}

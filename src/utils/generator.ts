@@ -4,14 +4,27 @@ export const generateHTML = (sections: SectionsData) => {
   const sectionsHTML = Object.values(sections)
     .filter(Boolean)
     .map((comp: unknown) => {
-        if (comp) {
-            const component = comp as ComponentData;
-            return component.component;
-        }
-        return '';
+      if (comp) {
+        const component = comp as ComponentData;
+        return component.component;
+      }
+      return '';
     })
     .join('');
-    console.log(sectionsHTML);
+
+  // Create a DOM parser to process the HTML
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(sectionsHTML, 'text/html');
+
+  // Remove specified attributes from all elements
+  doc.querySelectorAll('[contenteditable], [style], [disabled], [tabindex]').forEach((el) => {
+    el.removeAttribute('contenteditable');
+    el.removeAttribute('style');
+    el.removeAttribute('disabled');
+    el.removeAttribute('tabindex');
+  });
+
+  const cleanedHTML = doc.body.innerHTML;
 
   return `<!DOCTYPE html>
 <html lang="en" class="antialiased scroll-smooth">
@@ -22,7 +35,7 @@ export const generateHTML = (sections: SectionsData) => {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  ${sectionsHTML}
+  ${cleanedHTML}
 </body>
 </html>`;
 };
